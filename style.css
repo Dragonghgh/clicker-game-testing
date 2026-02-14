@@ -1,48 +1,68 @@
 body {
-    font-family: 'Comic Sans MS', sans-serif;
-    text-align: center;
-    background-color: #a0e7a0;
-    color: #333;
+  font-family: 'Comic Sans MS', sans-serif;
+  text-align: center;
+  background: url('https://i.imgur.com/Tm2gHqg.png') no-repeat center top;
+  background-size: cover;
+  color: #333;
 }
 
 .game-container {
-    margin-top: 30px;
+  margin-top: 20px;
+  position: relative;
 }
 
 h1 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.click-area {
+  position: relative;
+  display: inline-block;
 }
 
 .carrot-btn {
-    font-size: 120px; /* make it huge */
-    padding: 20px;
-    cursor: pointer;
-    border-radius: 25px;
-    border: none;
-    background-color: #ffd699;
-    transition: transform 0.1s;
+  font-size: 120px;
+  padding: 20px;
+  cursor: pointer;
+  border-radius: 25px;
+  border: none;
+  background-color: #ffd699;
+  transition: transform 0.1s;
 }
 
 .carrot-btn:active {
-    transform: scale(0.9);
+  transform: scale(0.9);
 }
 
 button {
-    padding: 10px 20px;
-    margin: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 12px;
-    border: none;
-    transition: transform 0.1s, background-color 0.2s;
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 12px;
+  border: none;
+  transition: transform 0.1s, background-color 0.2s;
 }
 
 button:hover {
-    transform: scale(1.1);
-    background-color: #ffb347;
+  transform: scale(1.1);
+  background-color: #ffb347;
+}
+
+.stats {
+  margin: 15px 0;
+  font-size: 1.2em;
+}
+
+#floating-carrots {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
 }
 
 .prestige {
-    margin-top: 20px;
+  margin-top: 20px;
 }
