@@ -15,8 +15,12 @@ h1 {
 }
 
 .carrot-btn {
-    width: 150px;
+    font-size: 120px; /* make it huge */
+    padding: 20px;
     cursor: pointer;
+    border-radius: 25px;
+    border: none;
+    background-color: #ffd699;
     transition: transform 0.1s;
 }
 
