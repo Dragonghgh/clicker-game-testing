@@ -1,9 +1,9 @@
 body {
   font-family: 'Comic Sans MS', sans-serif;
   text-align: center;
-  background: url('https://i.imgur.com/Tm2gHqg.png') no-repeat center top;
-  background-size: cover;
+  background: linear-gradient(to top, #a0e7a0 0%, #c0f0ff 80%);
   color: #333;
+  overflow-x: hidden;
 }
 
 .game-container {
@@ -12,8 +12,9 @@ body {
 }
 
 h1 {
-  font-size: 2.5em;
+  font-size: 3em;
   margin-bottom: 20px;
+  text-shadow: 2px 2px #ffd699;
 }
 
 .click-area {
@@ -29,6 +30,7 @@ h1 {
   border: none;
   background-color: #ffd699;
   transition: transform 0.1s;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.3);
 }
 
 .carrot-btn:active {
@@ -36,13 +38,15 @@ h1 {
 }
 
 button {
-  padding: 10px 20px;
+  padding: 12px 25px;
   margin: 10px;
   font-size: 16px;
   cursor: pointer;
   border-radius: 12px;
   border: none;
-  transition: transform 0.1s, background-color 0.2s;
+  transition: transform 0.1s, background-color 0.2s, box-shadow 0.2s;
+  background-color: #fff3cd;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
 }
 
 button:hover {
@@ -50,21 +54,17 @@ button:hover {
   background-color: #ffb347;
 }
 
-.stats {
+.stats, .achievements {
   margin: 15px 0;
   font-size: 1.2em;
 }
 
-#floating-carrots {
+#floating-carrots, #bunnies {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   pointer-events: none;
-}
-
-.prestige {
-  margin-top: 20px;
 }
 
 .floating-carrot {
@@ -77,4 +77,20 @@ button:hover {
 @keyframes floatUp {
   0% { opacity: 1; transform: translateY(0); }
   100% { opacity: 0; transform: translateY(-100px); }
+}
+
+.bunny {
+  position: absolute;
+  font-size: 40px;
+  animation: hop 2s infinite;
+}
+
+@keyframes hop {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
+
+.prestige {
+  margin-top: 20px;
 }
