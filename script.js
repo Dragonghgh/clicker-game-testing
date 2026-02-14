@@ -4,6 +4,7 @@ let autoClickers = 0;
 let fertilizerBoost = 0;
 let harvester = 0;
 let magicBunnyActive = false;
+let megaCarrotActive = false;
 let goldenCarrots = 0;
 
 // Costs
@@ -11,6 +12,7 @@ let autoClickCost = 50;
 let fertilizerCost = 100;
 let harvesterCost = 500;
 let magicBunnyCost = 1000;
+let megaCarrotCost = 5000;
 
 // Sounds
 const clickSound = document.getElementById('click-sound');
@@ -24,6 +26,7 @@ const achievements = [
   {name:"100 Carrots!", condition: ()=>score>=100, unlocked:false},
   {name:"1000 Carrots!", condition: ()=>score>=1000, unlocked:false},
   {name:"First Bunny!", condition: ()=>autoClickers>=1, unlocked:false},
+  {name:"Fertilizer Expert!", condition: ()=>fertilizerBoost>=5, unlocked:false},
 ];
 
 function updateAchievements() {
@@ -43,14 +46,14 @@ function updateAchievements() {
 function updateUI() {
     document.getElementById("score").innerText = `${score} Carrots`;
     document.getElementById("golden-carrots").innerText = `Golden Carrots: ${goldenCarrots}`;
-    document.getElementById("cpc").innerText = 1 + fertilizerBoost + (magicBunnyActive ? 1 : 0);
+    document.getElementById("cpc").innerText = 1 + fertilizerBoost + (magicBunnyActive ? 1 : 0) + (megaCarrotActive ? 4 : 0);
     document.getElementById("cps").innerText = autoClickers * (1 + fertilizerBoost) + harvester;
     updateAchievements();
 }
 
 // Click button
 document.getElementById("click-btn").addEventListener("click", () => {
-    score += 1 + fertilizerBoost + (magicBunnyActive ? 1 : 0);
+    score += 1 + fertilizerBoost + (magicBunnyActive ? 1 : 0) + (megaCarrotActive ? 4 : 0);
     createFloatingCarrot();
     clickSound.currentTime = 0;
     clickSound.play();
@@ -110,12 +113,24 @@ document.getElementById("magicBunny-btn").addEventListener("click", () => {
     }
 });
 
+// Mega Carrot (x5 clicks for 10s)
+document.getElementById("megaCarrot-btn").addEventListener("click", () => {
+    if(score >= megaCarrotCost && !megaCarrotActive){
+        score -= megaCarrotCost;
+        megaCarrotActive = true;
+        magicSound.currentTime = 0;
+        magicSound.play();
+        updateUI();
+        setTimeout(()=>{megaCarrotActive=false; updateUI();}, 10000);
+    }
+});
+
 // Prestige
 document.getElementById("prestige-btn").addEventListener("click", () => {
     if(score>=500){
         goldenCarrots += Math.floor(score/500);
-        score=0; autoClickers=0; fertilizerBoost=0; harvester=0; magicBunnyActive=false;
-        autoClickCost=50; fertilizerCost=100; harvesterCost=500; magicBunnyCost=1000;
+        score=0; autoClickers=0; fertilizerBoost=0; harvester=0; magicBunnyActive=false; megaCarrotActive=false;
+        autoClickCost=50; fertilizerCost=100; harvesterCost=500; magicBunnyCost=1000; megaCarrotCost=5000;
         prestigeSound.currentTime = 0;
         prestigeSound.play();
         updateUI();
