@@ -1,22 +1,37 @@
+// Game variables
 let score = 0;
 let autoClickers = 0;
 let fertilizerBoost = 0;
+let harvester = 0;
+let magicBunnyActive = false;
 let goldenCarrots = 0;
 
 let autoClickCost = 50;
 let fertilizerCost = 100;
+let harvesterCost = 500;
+let magicBunnyCost = 1000;
 
-// Update score display
-function updateScore() {
+// Sounds
+const clickSound = document.getElementById('click-sound');
+const upgradeSound = document.getElementById('upgrade-sound');
+const prestigeSound = document.getElementById('prestige-sound');
+
+// Update score & stats
+function updateUI() {
     document.getElementById("score").innerText = `${score} Carrots`;
     document.getElementById("golden-carrots").innerText = `Golden Carrots: ${goldenCarrots}`;
+    document.getElementById("cpc").innerText = 1 + fertilizerBoost + (magicBunnyActive ? 1 : 0);
+    document.getElementById("cps").innerText = autoClickers * (1 + fertilizerBoost) + harvester;
 }
 
 // Click button
 document.getElementById("click-btn").addEventListener("click", () => {
-    score += 1 + fertilizerBoost;
+    score += 1 + fertilizerBoost + (magicBunnyActive ? 1 : 0);
+    createFloatingCarrot();
+    clickSound.currentTime = 0;
+    clickSound.play();
     animateClick();
-    updateScore();
+    updateUI();
 });
 
 // Auto Clicker
@@ -26,7 +41,9 @@ document.getElementById("autoClicker-btn").addEventListener("click", () => {
         autoClickers += 1;
         autoClickCost = Math.floor(autoClickCost * 1.5);
         document.getElementById("autoClicker-btn").innerText = `🐰 Bunny Helper (${autoClickCost})`;
-        updateScore();
+        upgradeSound.currentTime = 0;
+        upgradeSound.play();
+        updateUI();
     }
 });
 
@@ -37,7 +54,37 @@ document.getElementById("fertilizer-btn").addEventListener("click", () => {
         fertilizerBoost += 1;
         fertilizerCost = Math.floor(fertilizerCost * 2);
         document.getElementById("fertilizer-btn").innerText = `🌱 Fertilizer Boost (${fertilizerCost})`;
-        updateScore();
+        upgradeSound.currentTime = 0;
+        upgradeSound.play();
+        updateUI();
+    }
+});
+
+// Carrot Harvester
+document.getElementById("harvester-btn").addEventListener("click", () => {
+    if(score >= harvesterCost) {
+        score -= harvesterCost;
+        harvester += 1;
+        harvesterCost = Math.floor(harvesterCost * 2);
+        document.getElementById("harvester-btn").innerText = `🚜 Carrot Harvester (${harvesterCost})`;
+        upgradeSound.currentTime = 0;
+        upgradeSound.play();
+        updateUI();
+    }
+});
+
+// Magic Bunny (x2 clicks for 10s)
+document.getElementById("magicBunny-btn").addEventListener("click", () => {
+    if(score >= magicBunnyCost && !magicBunnyActive) {
+        score -= magicBunnyCost;
+        magicBunnyActive = true;
+        upgradeSound.currentTime = 0;
+        upgradeSound.play();
+        updateUI();
+        setTimeout(() => {
+            magicBunnyActive = false;
+            updateUI();
+        }, 10000);
     }
 });
 
@@ -48,26 +95,41 @@ document.getElementById("prestige-btn").addEventListener("click", () => {
         score = 0;
         autoClickers = 0;
         fertilizerBoost = 0;
+        harvester = 0;
+        magicBunnyActive = false;
         autoClickCost = 50;
         fertilizerCost = 100;
-        updateScore();
+        harvesterCost = 500;
+        magicBunnyCost = 1000;
+        updateUI();
+        prestigeSound.currentTime = 0;
+        prestigeSound.play();
         alert("You prestiged! Golden Carrots earned!");
     } else {
         alert("You need at least 500 carrots to prestige!");
     }
 });
 
-// Auto Clicker effect
+// Auto Clicker + Harvester effect every second
 setInterval(() => {
-    score += autoClickers * (1 + fertilizerBoost);
-    updateScore();
+    score += autoClickers * (1 + fertilizerBoost) + harvester;
+    updateUI();
 }, 1000);
+
+// Floating carrot animation
+function createFloatingCarrot() {
+    const carrot = document.createElement('div');
+    carrot.innerText = '🥕';
+    carrot.className = 'floating-carrot';
+    const x = Math.random() * 80 + 10; // random horizontal position
+    carrot.style.left = x + '%';
+    document.getElementById('floating-carrots').appendChild(carrot);
+    setTimeout(() => carrot.remove(), 1000);
+}
 
 // Click animation
 function animateClick() {
     const carrot = document.getElementById("click-btn");
     carrot.style.transform = "scale(0.9)";
-    setTimeout(() => {
-        carrot.style.transform = "scale(1)";
-    }, 100);
+    setTimeout(() => carrot.style.transform = "scale(1)", 100);
 }
