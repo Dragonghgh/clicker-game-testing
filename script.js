@@ -1,15 +1,17 @@
 let score = 0;
 let autoClickers = 0;
-let autoClickCost = 50;
+let fertilizerBoost = 0;
 
-// Update score display
+let autoClickCost = 50;
+let fertilizerCost = 100;
+
 function updateScore() {
-    document.getElementById("score").innerText = `${score} Points`;
+    document.getElementById("score").innerText = `${score} Carrots`;
 }
 
-// Main click button
+// Click button
 document.getElementById("click-btn").addEventListener("click", () => {
-    score += 1;
+    score += 1 + fertilizerBoost;
     updateScore();
 });
 
@@ -18,14 +20,25 @@ document.getElementById("autoClicker-btn").addEventListener("click", () => {
     if(score >= autoClickCost) {
         score -= autoClickCost;
         autoClickers += 1;
-        autoClickCost = Math.floor(autoClickCost * 1.5); // cost increases
-        document.getElementById("autoClicker-btn").innerText = `Buy Auto Clicker (Cost: ${autoClickCost})`;
+        autoClickCost = Math.floor(autoClickCost * 1.5);
+        document.getElementById("autoClicker-btn").innerText = `Buy Bunny Helper (Cost: ${autoClickCost})`;
         updateScore();
     }
 });
 
-// Auto clicker effect
+// Buy Fertilizer Boost
+document.getElementById("fertilizer-btn").addEventListener("click", () => {
+    if(score >= fertilizerCost) {
+        score -= fertilizerCost;
+        fertilizerBoost += 1;
+        fertilizerCost = Math.floor(fertilizerCost * 2);
+        document.getElementById("fertilizer-btn").innerText = `Buy Fertilizer Boost (Cost: ${fertilizerCost})`;
+        updateScore();
+    }
+});
+
+// Auto Clicker effect
 setInterval(() => {
-    score += autoClickers;
+    score += autoClickers * (1 + fertilizerBoost);
     updateScore();
 }, 1000);
