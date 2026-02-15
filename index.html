@@ -1,51 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Ultimate Carrot Clicker</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Ultimate Carrot Clicker Deluxe</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="game-container">
-    <h1 id="score">0 Carrots</h1>
-    <div class="click-area">
-      <button id="click-btn" class="carrot-btn">🥕</button>
-    </div>
-
-    <div class="stats">
-      <p>Carrots per click: <span id="cpc">1</span></p>
-      <p>Carrots per second: <span id="cps">0</span></p>
-    </div>
-
-    <div class="upgrades">
-      <h2>Upgrades</h2>
-      <button id="autoClicker-btn">🐰 Bunny Helper (50)</button>
-      <button id="fertilizer-btn">🌱 Fertilizer Boost (100)</button>
-      <button id="harvester-btn">🚜 Carrot Harvester (500)</button>
-      <button id="magicBunny-btn">✨ Magic Bunny (1000, x2 Clicks 10s)</button>
-      <button id="megaCarrot-btn">🌟 Mega Carrot (5000, x5 Clicks 10s)</button>
-    </div>
-
-    <div class="achievements">
-      <h2>Achievements</h2>
-      <ul id="achievements-list"></ul>
-    </div>
-
-    <div class="prestige">
-      <button id="prestige-btn">Prestige: Reset for Golden Carrots</button>
-      <p id="golden-carrots">Golden Carrots: 0</p>
-    </div>
-
-    <div id="floating-carrots"></div>
-    <div id="bunnies"></div>
+<div class="game-container">
+  <h1 id="score">0 Carrots</h1>
+  <div class="click-area">
+    <button id="click-btn" class="carrot-btn">🥕</button>
   </div>
 
-  <!-- Sounds -->
-  <audio id="click-sound" src="https://freesound.org/data/previews/341/341695_3248244-lq.mp3"></audio>
-  <audio id="upgrade-sound" src="https://freesound.org/data/previews/331/331912_3248244-lq.mp3"></audio>
-  <audio id="prestige-sound" src="https://freesound.org/data/previews/414/414209_3248244-lq.mp3"></audio>
-  <audio id="magic-sound" src="https://freesound.org/data/previews/569/569858_13127244-lq.mp3"></audio>
+  <div class="stats">
+    <p>Carrots per click: <span id="cpc">1</span></p>
+    <p>Carrots per second: <span id="cps">0</span></p>
+  </div>
 
-  <script src="script.js"></script>
+  <div class="upgrades">
+    <h2>Upgrades</h2>
+    <button id="autoClicker-btn">🐰 Bunny Helper (1)</button>
+    <button id="fertilizer-btn">🌱 Fertilizer Boost (100)</button>
+    <button id="harvester-btn">🚜 Carrot Harvester (500)</button>
+    <button id="magicBunny-btn">✨ Magic Bunny (1000)</button>
+    <button id="megaCarrot-btn">🌟 Mega Carrot (5000)</button>
+  </div>
+
+  <div class="achievements">
+    <h2>Achievements</h2>
+    <ul id="achievements-list"></ul>
+  </div>
+
+  <div class="prestige">
+    <button id="prestige-btn">Prestige: Reset for Golden Carrots</button>
+    <p id="golden-carrots">Golden Carrots: 0</p>
+  </div>
+
+  <div id="floating-carrots"></div>
+  <div id="bunnies"></div>
+</div>
+
+<!-- Sounds -->
+<audio id="click-sound" src="https://freesound.org/data/previews/341/341695_3248244-lq.mp3"></audio>
+<audio id="upgrade-sound" src="https://freesound.org/data/previews/331/331912_3248244-lq.mp3"></audio>
+<audio id="prestige-sound" src="https://freesound.org/data/previews/414/414209_3248244-lq.mp3"></audio>
+<audio id="magic-sound" src="https://freesound.org/data/previews/569/569858_13127244-lq.mp3"></audio>
+
+<script src="script.js"></script>
 </body>
 </html>
