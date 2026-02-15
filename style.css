@@ -7,91 +7,30 @@ body {
   min-height: 100vh;
 }
 
-.game-container {
-  margin-top: 20px;
-  position: relative;
-}
+.game-container { margin-top: 20px; position: relative; }
 
-h1 {
-  font-size: 3em;
-  margin-bottom: 20px;
-  text-shadow: 2px 2px #ffd699;
-}
+h1 { font-size: 3em; margin-bottom: 20px; text-shadow: 2px 2px #ffd699; }
 
-.click-area {
-  position: relative;
-  display: inline-block;
-}
+.click-area { position: relative; display: inline-block; }
 
-.carrot-btn {
-  font-size: 120px;
-  padding: 20px;
-  cursor: pointer;
-  border-radius: 25px;
-  border: none;
-  background-color: #ffd699;
-  transition: transform 0.1s;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.3);
-}
-
-.carrot-btn:active {
-  transform: scale(0.9);
-}
+.carrot-btn { font-size: 120px; padding: 20px; cursor: pointer; border-radius: 25px; border: none; background-color: #ffd699; transition: transform 0.1s; box-shadow: 0 5px 10px rgba(0,0,0,0.3); }
+.carrot-btn:active { transform: scale(0.9); }
 
 button {
-  padding: 12px 25px;
-  margin: 10px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 12px;
-  border: none;
-  transition: transform 0.1s, background-color 0.2s, box-shadow 0.2s;
-  background-color: #fff3cd;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+  padding: 12px 25px; margin: 10px; font-size: 16px; cursor: pointer; border-radius: 12px;
+  border: none; transition: transform 0.1s, background-color 0.2s, box-shadow 0.2s;
+  background-color: #fff3cd; box-shadow: 0 3px 6px rgba(0,0,0,0.2);
 }
+button:hover { transform: scale(1.1); background-color: #ffb347; }
 
-button:hover {
-  transform: scale(1.1);
-  background-color: #ffb347;
-}
+.stats, .achievements { margin: 15px 0; font-size: 1.2em; }
 
-.stats, .achievements {
-  margin: 15px 0;
-  font-size: 1.2em;
-}
+#floating-carrots, #bunnies { position: absolute; top: 0; left: 0; width: 100%; pointer-events: none; }
 
-#floating-carrots, #bunnies {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  pointer-events: none;
-}
+.floating-carrot { position: absolute; font-size: 30px; animation: floatUp 1s ease-out forwards; pointer-events: none; }
+@keyframes floatUp { 0% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-120px); } }
 
-.floating-carrot {
-  position: absolute;
-  font-size: 30px;
-  animation: floatUp 1s ease-out forwards;
-  pointer-events: none;
-}
+.bunny { position: absolute; font-size: 40px; animation: hop 2s infinite; }
+@keyframes hop { 0% { transform: translateY(0); } 50% { transform: translateY(-20px); } 100% { transform: translateY(0); } }
 
-@keyframes floatUp {
-  0% { opacity: 1; transform: translateY(0); }
-  100% { opacity: 0; transform: translateY(-120px); }
-}
-
-.bunny {
-  position: absolute;
-  font-size: 40px;
-  animation: hop 2s infinite;
-}
-
-@keyframes hop {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
-  100% { transform: translateY(0); }
-}
-
-.prestige {
-  margin-top: 20px;
-}
+.prestige { margin-top: 20px; }
